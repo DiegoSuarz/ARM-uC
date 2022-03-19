@@ -1,0 +1,22 @@
+17:08:52 **** Incremental Build of configuration Debug for project LIBRERIA_LCD ****
+make -j2 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "LIBRERIA_LCD.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\CURSOS\ARM\STM32F401RE\TALLER UNI\03_CLASE_LCD\LIBRERIA_LCD\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LIBRERIA_LCD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LIBRERIA_LCD.elf
+ 
+arm-none-eabi-size   LIBRERIA_LCD.elf 
+arm-none-eabi-objdump -h -S  LIBRERIA_LCD.elf  > "LIBRERIA_LCD.list"
+   text	   data	    bss	    dec	    hex	filename
+   7124	     20	   1572	   8716	   220c	LIBRERIA_LCD.elf
+Finished building: default.size.stdout
+ 
+Finished building: LIBRERIA_LCD.list
+arm-none-eabi-objcopy  -O binary  LIBRERIA_LCD.elf  "LIBRERIA_LCD.bin"
+ 
+Finished building: LIBRERIA_LCD.bin
+ 
+arm-none-eabi-objcopy -O ihex LIBRERIA_LCD.elf LIBRERIA_LCD.hex
+ 
+
+17:08:55 Build Finished. 0 errors, 0 warnings. (took 3s.290ms)
+

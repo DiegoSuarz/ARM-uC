@@ -1,0 +1,25 @@
+/*
+ * LCD_LIB.c
+ *
+ *  Created on: Mar 7, 2022
+ *      Author: Diego
+ */
+
+#include "LCD_LIB.h"
+#include "main.h"
+
+void busdata(char a){
+	HAL_GPIO_WritePin(GPIOB, D4_Pin, a & 0x01);
+	HAL_GPIO_WritePin(GPIOB, D5_Pin, a & 0x02);
+	HAL_GPIO_WritePin(GPIOB, D6_Pin, a & 0x04);
+	HAL_GPIO_WritePin(GPIOA, D7_Pin, a & 0x08);
+}
+
+void comando(char a){
+	HAL_GPIO_WritePin(GPIOC, E_Pin, LOW);
+	HAL_GPIO_WritePin(GPIOC, E_Pin, HIGH);
+	busdata(a);
+	HAL_Delay(1);
+	HAL_GPIO_WritePin(GPIOC, E_Pin, LOW);
+}
+

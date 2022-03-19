@@ -1,0 +1,23 @@
+21:50:26 **** Incremental Build of configuration Debug for project TAREA_LCD ****
+make -j2 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "TAREA_LCD.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\CURSOS\ARM\STM32F401RE\TALLER UNI\03_TAREA\TAREA_LCD\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TAREA_LCD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TAREA_LCD.elf
+ 
+arm-none-eabi-size   TAREA_LCD.elf 
+arm-none-eabi-objdump -h -S  TAREA_LCD.elf  > "TAREA_LCD.list"
+   text	   data	    bss	    dec	    hex	filename
+   8328	     20	   1580	   9928	   26c8	TAREA_LCD.elf
+Finished building: default.size.stdout
+ 
+arm-none-eabi-objcopy  -O ihex  TAREA_LCD.elf  "TAREA_LCD.hex"
+Finished building: TAREA_LCD.list
+ 
+arm-none-eabi-objcopy  -O binary  TAREA_LCD.elf  "TAREA_LCD.bin"
+Finished building: TAREA_LCD.hex
+ 
+Finished building: TAREA_LCD.bin
+ 
+
+21:50:29 Build Finished. 0 errors, 0 warnings. (took 2s.483ms)
+

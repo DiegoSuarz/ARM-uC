@@ -1,0 +1,16 @@
+/*
+ * LCD_LIB.h
+ *
+ *  Created on: Mar 7, 2022
+ *      Author: Diego
+ */
+
+#ifndef INC_LCD_LIB_H_
+#define INC_LCD_LIB_H_
+
+void busdata(char a);
+
+void comando(char a);
+
+void Init(void);
+#endif /* INC_LCD_LIB_H_ */

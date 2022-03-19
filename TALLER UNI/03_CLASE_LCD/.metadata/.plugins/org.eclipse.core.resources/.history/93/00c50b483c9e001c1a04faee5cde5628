@@ -1,0 +1,13 @@
+/*
+ * LCD_LIB.c
+ *
+ *  Created on: Mar 7, 2022
+ *      Author: Diego
+ */
+
+#include "LCD_LIB.h"
+
+void busdata(char a){
+
+
+}

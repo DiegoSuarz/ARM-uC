@@ -1,0 +1,87 @@
+/*
+ * LCD_LIB.c
+ *
+ *  Created on: Mar 7, 2022
+ *      Author: Diego
+ */
+
+#include "LCD_LIB.h"
+#include "main.h"
+
+void busdata(char a){
+	HAL_GPIO_WritePin(GPIOB, D4_Pin, a & 0x01);
+	HAL_GPIO_WritePin(GPIOB, D5_Pin, a & 0x02);
+	HAL_GPIO_WritePin(GPIOB, D6_Pin, a & 0x04);
+	HAL_GPIO_WritePin(GPIOA, D7_Pin, a & 0x08);
+}
+
+void comando(char a){
+	HAL_GPIO_WritePin(GPIOC, EN_Pin,0);
+	HAL_GPIO_WritePin(GPIOC, EN_Pin,1);
+	busdata(a);
+	HAL_Delay(1);
+	HAL_GPIO_WritePin(GPIOC, EN_Pin,0);
+}
+
+void LCD_Init(void){
+	comando(0x03);
+	comando(0x03);
+	comando(0x03);
+	comando(0x02);
+	comando(0x02);
+	comando(0x08);
+	comando(0x00);
+	comando(0x08);
+	comando(0x00);
+	comando(0x01);
+	comando(0x00);
+	comando(0x0F); //0x0E
+}
+
+void LCD_Set_Cursor(char x, char y){
+
+	char m,n;		//m= nibble high, n=nibble low
+	if(y==1){
+		m=0x80 + x;
+		n=(0x80 + x)>>4;
+		comando(n);
+		comando(m);
+	}
+	if(y==2){
+		m=0xC0+x;
+		n=(0xc0+ x)>>4;
+		comando(n);
+		comando(m);
+	}if(y==3){
+		m=0x80 + 20 +x;
+		n=(0x80 + 20 + x)>>4;
+		comando(n);
+		comando(m);
+	}if(y==4){
+		m=0xC0 +20 +x;
+		n=(0xC0 + 20 +x)>>4;
+		comando(n);
+		comando(m);
+	}
+
+}
+
+void LCD_Set_caracter(char a){
+	char m,n;
+	m=a>>4;
+	n=a;
+	//RS=1;
+	HAL_GPIO_WritePin(GPIOA, RS_Pin,1);
+	comando(m);
+	comando(n);
+	HAL_GPIO_WritePin(GPIOA, RS_Pin, 0);
+}
+
+void LCD_Print(char a[]){
+	for(int k=0;a[k]!='\0';k++){
+		LCD_Set_caracter(a[k]);
+	}
+}
+
+
+
